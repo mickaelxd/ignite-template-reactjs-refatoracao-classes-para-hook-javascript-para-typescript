@@ -11,10 +11,11 @@ import { Container } from './styles';
 
 interface Props {
   name: string;
-  icon: React.FC<{ size: number }>;
+  icon?: React.FC<{ size: number }>;
+  placeholder: string;
 }
 
-const Input: React.FC<Props> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<Props> = ({ name, icon: Icon, placeholder, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -29,7 +30,7 @@ const Input: React.FC<Props> = ({ name, icon: Icon, ...rest }) => {
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
-    if(inputRef.current) {
+    if (inputRef.current) {
       setIsFilled(!!inputRef.current?.value);
     }
 
@@ -52,7 +53,9 @@ const Input: React.FC<Props> = ({ name, icon: Icon, ...rest }) => {
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
+        placeholder={placeholder}
         {...rest}
+        enterKeyHint="enter"
       />
     </Container>
   );
