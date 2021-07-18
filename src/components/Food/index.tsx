@@ -6,7 +6,7 @@ import api from '../../services/api';
 import { FoodDTO } from '../../interfaces/Food';
 
 interface Props {
-  available: boolean;
+  available?: boolean;
   food: FoodDTO;
   handleEditFood: (food: FoodDTO) => void;
   handleDelete: (id: number) => void;
